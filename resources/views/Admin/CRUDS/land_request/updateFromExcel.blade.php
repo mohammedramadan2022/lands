@@ -1,6 +1,6 @@
 @extends('Admin.layouts.inc.app')
 @section('title')
-    رفع طلبات الأراضي/العزب - ملف إكسل
+    تحديث الطلبات من ملف إكسل
 @endsection
 @section('css')
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css"/>
@@ -10,16 +10,26 @@
 @section('content')
     <div class="card">
         <div class="card-header ">
-            <h5 class="card-title mb-0 flex-grow-1">رفع طلبات الأراضي/العزب عبر ملف إكسل</h5>
+            <h5 class="card-title mb-0 flex-grow-1">تحديث بيانات طلبات الأراضي/العزب بواسطة ملف إكسل</h5>
 
             <div class="alert alert-info mt-4">
-                صيغة الأعمدة المتوقعة:
+                سيقوم هذا الإجراء بتحديث السجلات الموجودة فقط (حسب رقم الهوية). إذا لم يوجد رقم الهوية سيتم تجاهل السطر.
+                الأعمدة المتوقعة:
                 <ul class="mb-0">
-                    <li>العمود الأول: رقم تسلسلي (يتم تجاهله)</li>
-                    <li>العمود الثاني: اسم مقدم الطلب (سنتجاهل أي رقم في بداية الخانة)</li>
-                    <li>العمود الثالث: رقم الهوية</li>
-                    <li>العمود الرابع: رقم الهاتف والهاتف الإضافي، الفاصل بينهم قد يكون + أو - أو =</li>
-                    <li>العمود الخامس أو الأخير: الملاحظات</li>
+                    <li>رقم المشترك</li>
+                    <li>إسم المالك</li>
+                    <li>الجنسية</li>
+                    <li>تاريخ الميلاد</li>
+                    <li>حالة المشترك</li>
+                    <li>البلد (اختياري، يتم تجاهله)</li>
+                    <li>نوع الاثبات الشخصي (يُتجاهل)</li>
+                    <li>رقم بطاقة الاثبات الشخصي (سيتم استخدامه للمطابقة)</li>
+                    <li>عدد المطايا</li>
+                    <li>رقم الجوال الأساسي</li>
+                    <li>رقم الجوال الفرعي</li>
+                    <li>عدد مرات المشاركة بالسباقات</li>
+                    <li>تاريخ اخر مشاركه</li>
+                    <li>RaceID (يُتجاهل)</li>
                 </ul>
             </div>
 
@@ -36,8 +46,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.land-requests.upload-excel.store') }}" method="POST"
-                  enctype="multipart/form-data" class="mt-4">
+            <form action="{{ route('admin.land-requests.update-excel.store') }}" method="POST" enctype="multipart/form-data" class="mt-4">
                 @csrf
 
                 <div class="mb-3">
@@ -45,7 +54,7 @@
                     <input type="file" class="form-control" id="file" name="sheet" accept=".xlsx,.xls,.csv" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">رفع</button>
+                <button type="submit" class="btn btn-primary">رفع للتحديث</button>
             </form>
         </div>
     </div>

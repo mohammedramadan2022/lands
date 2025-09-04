@@ -5,6 +5,7 @@ use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,15 +103,16 @@ Route::get('/test', function () {
     return  env('FRONTEND_URL');
 });
 
+
+
 Route::get('/mail', function () {
     $testUser = (object) [
-        'email' => 'test@example.com', // Replace with the test email address
-        'name' => 'Test User', // Replace with the test user name if needed
+        'email' => 'test@example.com',
+        'name' => 'Test User',
     ];
 
-    $user = \App\Models\User::first(); // Replace with a dummy token for testing
+    $user = \App\Models\User::first();
 
-    // Notify the test user
     $user->notify(new ResetPasswordNotification($user));
 
     return 'Test email sent successfully!';

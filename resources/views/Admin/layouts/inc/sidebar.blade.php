@@ -132,6 +132,18 @@
                         <span class = "menu-title">رفع طلبات الأراضي/العزب</span>
                     </a>
                 </div>
+                <div  class = "menu-item">
+                    <a class = "menu-link menu-link-active" href = "{{route('admin.land-requests.update-excel')}}">
+                        <span class = "menu-icon">
+                            <span class = "svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                    <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480h-80q0-67-25.5-126.5T704-704q-46-46-105.5-71T480-800q-67 0-126.5 25T248-704q-46 46-71 105.5T152-480q0 67 25 126.5T248-248q46 46 105.5 71T480-152v-128l160 160-160 160V-80Z"/>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class = "menu-title">تحديث الطلبات من إكسل</span>
+                    </a>
+                </div>
 
 
                 {{--

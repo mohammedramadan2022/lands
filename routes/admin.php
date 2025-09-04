@@ -42,11 +42,19 @@ Route::group(
 
         // Land requests list and details
         Route::get('land-requests', [\App\Http\Controllers\Admin\LandRequestController::class, 'index'])->name('admin.land-requests.index');
-        Route::get('land-requests/{landRequest}', [\App\Http\Controllers\Admin\LandRequestController::class, 'show'])->name('admin.land-requests.show');
 
         // Land requests excel upload
         Route::get('land-requests/upload-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelView'])->name('admin.land-requests.upload-excel');
         Route::post('land-requests/upload-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelStore'])->name('admin.land-requests.upload-excel.store');
+
+        // Land requests update via excel (new route - does not affect create upload)
+        Route::get('land-requests/update-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelUpdateView'])->name('admin.land-requests.update-excel');
+        Route::post('land-requests/update-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelUpdateStore'])->name('admin.land-requests.update-excel.store');
+
+        // Land requests show (must be after specific routes and constrained to numeric IDs)
+        Route::get('land-requests/{landRequest}', [\App\Http\Controllers\Admin\LandRequestController::class, 'show'])
+            ->whereNumber('landRequest')
+            ->name('admin.land-requests.show');
 
 
         ### Countries

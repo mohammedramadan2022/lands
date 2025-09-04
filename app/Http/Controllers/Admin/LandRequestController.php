@@ -30,10 +30,10 @@ class LandRequestController extends Controller
             $filtered = $query->count();
 
             // Ordering
-            $columns = ['id','applicant_name','national_id','phone','phone_alt','notes','created_at'];
+            $columns = ['id','applicant_name','national_id','nationality','birth_date','subscriber_number','subscriber_status','race_participation_count','camels_count','phone','phone_alt','last_participation_date','notes'];
             $orderColIndex = (int)($request->input('order.0.column', 6));
             $orderDir = $request->input('order.0.dir', 'desc');
-            $orderCol = $columns[$orderColIndex] ?? 'created_at';
+            $orderCol = $columns[$orderColIndex] ?? 'id';
             $query->orderBy($orderCol, $orderDir === 'asc' ? 'asc' : 'desc');
 
             // Pagination
@@ -46,13 +46,19 @@ class LandRequestController extends Controller
             $data = $query->get()->map(function ($row) use ($start) {
                 return [
                     'id' => $row->id,
-                    'index' => null, // will be handled on client if needed
+                    'index' => null,
                     'applicant_name' => e($row->applicant_name),
                     'national_id' => e($row->national_id),
+                    'nationality' => e($row->nationality),
+                    'birth_date' => optional($row->birth_date)->format('Y-m-d'),
+                    'subscriber_number' => e($row->subscriber_number),
+                    'subscriber_status' => e($row->subscriber_status),
+                    'race_participation_count' => (int) $row->race_participation_count,
+                    'camels_count' => (int) $row->camels_count,
                     'phone' => e($row->phone),
                     'phone_alt' => e($row->phone_alt),
+                    'last_participation_date' => optional($row->last_participation_date)->format('Y-m-d'),
                     'notes' => e($row->notes),
-                    'created_at' => optional($row->created_at)->format('Y-m-d H:i'),
                 ];
             });
 
@@ -77,6 +83,11 @@ class LandRequestController extends Controller
         return view('Admin.CRUDS.land_request.uploadExcel');
     }
 
+    public function uploadExcelUpdateView()
+    {
+        return view('Admin.CRUDS.land_request.updateFromExcel');
+    }
+
     public function uploadExcelStore(Request $request)
     {
         ini_set('memory_limit', '512M');
@@ -97,12 +108,12 @@ class LandRequestController extends Controller
             $path = $dir . $fileName;
             [$ok, $message] = $this->import($path);
             if ($ok) {
-                return response()->json(['code' => 200, 'message' => __('تم الاستيراد بنجاح')]);
+                return redirect()->back()->with('success', __('تم الاستيراد بنجاح'));
             }
-            return response()->json(['code' => 421, 'message' => $message ?? __('حدث خطأ أثناء الاستيراد')], 421);
+            return redirect()->back()->withErrors(['sheet' => $message ?? __('حدث خطأ أثناء الاستيراد')]);
         }
 
-        return response()->json(['code' => 421, 'message' => __('الملف غير صالح')], 421);
+        return redirect()->back()->withErrors(['sheet' => __('الملف غير صالح')]);
     }
 
     private function import(string $file): array
@@ -212,5 +223,138 @@ class LandRequestController extends Controller
     {
         $digits = preg_replace('/\D+/u', '', $v);
         return strlen($digits) >= 7; // simple heuristic
+    }
+
+    public function uploadExcelUpdateStore(Request $request)
+    {
+        ini_set('memory_limit', '512M');
+        $request->validate([
+            'sheet' => 'required|file|mimes:xlsx,xls,csv',
+        ]);
+
+        if ($request->file('sheet')->isValid()) {
+            $file = $request->file('sheet');
+            $dir = 'excel/upload/updates/';
+            if (!is_dir($dir)) {
+                @mkdir($dir, 0777, true);
+            }
+            $extension = $file->getClientOriginalExtension();
+            $fileName = 'land-requests-update-' . rand(11111111, 99999999) . '.' . $extension;
+            $file->move($dir, $fileName);
+
+            $path = $dir . $fileName;
+            [$ok, $message, $stats] = $this->importUpdate($path);
+            if ($ok) {
+                $msg = __('تم تحديث البيانات بنجاح') . ' - ' . sprintf(__('تم تحديث %d سجل/سجلات. تم تجاهل %d سطر بدون تطابق.'), $stats['updated'] ?? 0, $stats['ignored'] ?? 0);
+                return redirect()->back()->with('success', $msg);
+            }
+            return redirect()->back()->withErrors(['sheet' => $message ?? __('حدث خطأ أثناء التحديث')]);
+        }
+
+        return redirect()->back()->withErrors(['sheet' => __('الملف غير صالح')]);
+    }
+
+    private function importUpdate(string $file): array
+    {
+        $sheets = Excel::toArray(null, $file);
+        if (!isset($sheets[0])) {
+            return [false, __('لا توجد بيانات في الملف'), []];
+        }
+        $rows = $sheets[0];
+        if (empty($rows)) {
+            return [true, null, ['updated' => 0, 'ignored' => 0]];
+        }
+
+        // Build header map by Arabic titles
+        $header = array_map(fn($v) => trim(mb_strtolower((string)$v)), $rows[0]);
+        $map = [];
+        $aliases = [
+            'subscriber_number' => ['رقم المشترك','subscriber number'],
+            'applicant_name' => ['اسم المالك','إسم المالك','name'],
+            'nationality' => ['الجنسية','nationality'],
+            'birth_date' => ['تاريخ الميلاد','birthdate','date of birth'],
+            'subscriber_status' => ['حالة المشترك','subscriber status'],
+            'country' => ['البلد','الدولة','country'],
+            'id_type' => ['نوع الاثبات الشخصي','نوع الإثبات الشخصي','id type'],
+            'national_id' => ['رقم بطاقة الاثبات الشخصي','رقم بطاقة الإثبات الشخصي','national id','الهوية','رقم الهوية'],
+            'camels_count' => ['عدد المطايا','عدد  المطايا','camels count'],
+            'phone' => ['رقم الجوال الأساسي','الجوال الأساسي','phone','mobile'],
+            'phone_alt' => ['رقم الجوال الفرعي','الجوال الفرعي','alt phone'],
+            'race_participation_count' => ['عدد مرات المشاركة بالسباقات','عدد مرات المشاركه بالسباقات'],
+            'last_participation_date' => ['تاريخ اخر مشاركه','تاريخ آخر مشاركة','آخر مشاركة'],
+            'race_id' => ['raceid','race id']
+        ];
+        foreach ($aliases as $key => $names) {
+            foreach ($names as $name) {
+                $idx = array_search(mb_strtolower($name), $header, true);
+                if ($idx !== false) { $map[$key] = $idx; break; }
+            }
+        }
+
+        $updated = 0; $ignored = 0;
+        $startIndex = 1; // skip header
+        for ($i = $startIndex; $i < count($rows); $i++) {
+            $row = $rows[$i];
+            if (!is_array($row)) { $ignored++; continue; }
+            $get = function(string $k) use ($map, $row) {
+                if (!isset($map[$k])) return null;
+                $v = $row[$map[$k]] ?? null;
+                return is_string($v) ? trim($v) : $v;
+            };
+
+            $nationalId = $this->onlyDigits((string)($get('national_id') ?? ''));
+            if (!$nationalId) { $ignored++; continue; }
+
+            $model = LandRequest::where('national_id', $nationalId)->first();
+            if (!$model) { $ignored++; continue; }
+
+            $applicantName = (string)($get('applicant_name') ?? '');
+            $subscriberNumber = (string)($get('subscriber_number') ?? '');
+            $nationality = (string)($get('nationality') ?? '');
+            $subscriberStatus = (string)($get('subscriber_status') ?? '');
+            $camelsCount = $get('camels_count');
+            $raceCount = $get('race_participation_count');
+            $phone = $this->onlyDigits((string)($get('phone') ?? ''));
+            $phoneAlt = $this->onlyDigits((string)($get('phone_alt') ?? ''));
+            $birthRaw = $get('birth_date');
+            $lastPartRaw = $get('last_participation_date');
+
+            $payload = [];
+            if ($applicantName !== '') $payload['applicant_name'] = $this->cleanApplicantName($applicantName);
+            if ($subscriberNumber !== '') $payload['subscriber_number'] = $subscriberNumber;
+            if ($nationality !== '') $payload['nationality'] = $nationality;
+            if ($subscriberStatus !== '') $payload['subscriber_status'] = $subscriberStatus;
+            if ($camelsCount !== null && $camelsCount !== '') $payload['camels_count'] = (int) preg_replace('/\D+/','', (string)$camelsCount);
+            if ($raceCount !== null && $raceCount !== '') $payload['race_participation_count'] = (int) preg_replace('/\D+/','', (string)$raceCount);
+            if ($phone) $payload['phone'] = $phone;
+            if ($phoneAlt) $payload['phone_alt'] = $phoneAlt;
+            if ($birthRaw !== null && $birthRaw !== '') $payload['birth_date'] = $this->parseDate($birthRaw);
+            if ($lastPartRaw !== null && $lastPartRaw !== '') $payload['last_participation_date'] = $this->parseDate($lastPartRaw);
+
+            if (!empty($payload)) {
+                $model->update($payload);
+                $updated++;
+            } else {
+                $ignored++;
+            }
+        }
+
+        return [true, null, ['updated' => $updated, 'ignored' => $ignored]];
+    }
+
+    private function parseDate($v): ?string
+    {
+        // If numeric, treat as Excel serial date
+        if (is_numeric($v)) {
+            $base = \Carbon\Carbon::create(1899, 12, 30, 0, 0, 0, 'UTC');
+            return $base->copy()->addDays((int)$v)->format('Y-m-d');
+        }
+        $s = trim((string)$v);
+        if ($s === '') return null;
+        try {
+            return \Carbon\Carbon::parse($s)->format('Y-m-d');
+        } catch (\Throwable $e) {
+            return null;
+        }
     }
 }

@@ -21,12 +21,40 @@
                 <div class="form-control">{{ $landRequest->national_id }}</div>
             </div>
             <div class="col-md-6">
+                <label class="form-label">الجنسية</label>
+                <div class="form-control">{{ $landRequest->nationality }}</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">تاريخ الميلاد</label>
+                <div class="form-control">{{ optional($landRequest->birth_date)->format('Y-m-d') }}</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">رقم المشترك</label>
+                <div class="form-control">{{ $landRequest->subscriber_number }}</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">حالة المشترك</label>
+                <div class="form-control">{{ $landRequest->subscriber_status }}</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">عدد مرات المشاركة</label>
+                <div class="form-control">{{ $landRequest->race_participation_count }}</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">عدد المطايا</label>
+                <div class="form-control">{{ $landRequest->camels_count }}</div>
+            </div>
+            <div class="col-md-6">
                 <label class="form-label">الجوال</label>
                 <div class="form-control">{{ $landRequest->phone }}</div>
             </div>
             <div class="col-md-6">
                 <label class="form-label">جوال بديل</label>
                 <div class="form-control">{{ $landRequest->phone_alt }}</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">تاريخ اخر مشاركة</label>
+                <div class="form-control">{{ optional($landRequest->last_participation_date)->format('Y-m-d') }}</div>
             </div>
             <div class="col-12">
                 <label class="form-label">ملاحظات</label>

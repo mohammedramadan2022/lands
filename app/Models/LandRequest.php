@@ -17,6 +17,13 @@ class LandRequest extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'birth_date' => 'date',
+        'last_participation_date' => 'date',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     protected static function boot()
     {
         parent::boot();

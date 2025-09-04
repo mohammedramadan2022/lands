@@ -18,10 +18,16 @@
                     <th>#</th>
                     <th>الاسم</th>
                     <th>الهوية</th>
+                    <th>الجنسية</th>
+                    <th>تاريخ الميلاد</th>
+                    <th>رقم المشترك</th>
+                    <th>حالة المشترك</th>
+                    <th>عدد مرات المشاركة</th>
+                    <th>عدد المطايا</th>
                     <th>الجوال</th>
                     <th>جوال بديل</th>
+                    <th>تاريخ اخر مشاركة</th>
                     <th>ملاحظات</th>
-                    <th>تاريخ الإضافة</th>
                 </tr>
                 </thead>
             </table>
@@ -36,10 +42,16 @@
         {data: 'id', name: 'id', visible:false},
         {data: 'applicant_name', name: 'applicant_name'},
         {data: 'national_id', name: 'national_id'},
+        {data: 'nationality', name: 'nationality'},
+        {data: 'birth_date', name: 'birth_date'},
+        {data: 'subscriber_number', name: 'subscriber_number'},
+        {data: 'subscriber_status', name: 'subscriber_status'},
+        {data: 'race_participation_count', name: 'race_participation_count'},
+        {data: 'camels_count', name: 'camels_count'},
         {data: 'phone', name: 'phone'},
         {data: 'phone_alt', name: 'phone_alt'},
+        {data: 'last_participation_date', name: 'last_participation_date'},
         {data: 'notes', name: 'notes'},
-        {data: 'created_at', name: 'created_at'},
     ];
 </script>
 @include('Admin.layouts.inc.ajax',['url'=>'land-requests','createRoute'=>'admin.land-requests.upload-excel'])
