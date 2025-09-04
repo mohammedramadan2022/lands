@@ -30,7 +30,7 @@ class LandRequestController extends Controller
             $filtered = $query->count();
 
             // Ordering
-            $columns = ['id','applicant_name','national_id','nationality','birth_date','subscriber_number','subscriber_status','race_participation_count','camels_count','phone','phone_alt','last_participation_date','notes'];
+            $columns = ['id','applicant_name','national_id','nationality','birth_date','subscriber_number','race_participation_count','camels_count','phone','phone_alt','last_participation_date','notes'];
             $orderColIndex = (int)($request->input('order.0.column', 6));
             $orderDir = $request->input('order.0.dir', 'desc');
             $orderCol = $columns[$orderColIndex] ?? 'id';
@@ -44,15 +44,31 @@ class LandRequestController extends Controller
             }
 
             $data = $query->get()->map(function ($row) use ($start) {
+                $statusText = null;
+                // Normalize check_status to Arabic labels
+                $val = trim((string)($row->check_status ?? ''));
+                if ($val !== '') {
+                    $lower = mb_strtolower($val);
+                    if (in_array($lower, ['1','yes','true','success','passed','ناجح','اجتاز'])) {
+                        $statusText = 'اجتاز';
+                    } elseif (in_array($lower, ['0','no','false','failed','فاشل','لم يجتاز'])) {
+                        $statusText = 'لم يجتاز';
+                    } else {
+                        // Any non-empty custom text from evaluation stays as-is
+                        $statusText = e($row->check_status);
+                    }
+                }
                 return [
                     'id' => $row->id,
                     'index' => null,
+                    // Use actions field to carry the textual check status for the index "تحقق" column
+                    'actions' => $statusText,
                     'applicant_name' => e($row->applicant_name),
                     'national_id' => e($row->national_id),
                     'nationality' => e($row->nationality),
                     'birth_date' => optional($row->birth_date)->format('Y-m-d'),
                     'subscriber_number' => e($row->subscriber_number),
-                    'subscriber_status' => e($row->subscriber_status),
+                    // 'subscriber_status' removed from index view
                     'race_participation_count' => (int) $row->race_participation_count,
                     'camels_count' => (int) $row->camels_count,
                     'phone' => e($row->phone),
@@ -333,6 +349,9 @@ class LandRequestController extends Controller
 
             if (!empty($payload)) {
                 $model->update($payload);
+                // Re-evaluate check status after updates
+                [$status] = $this->evaluateCheckStatus($model->fresh());
+                $model->update(['check_status' => $status]);
                 $updated++;
             } else {
                 $ignored++;
@@ -356,5 +375,91 @@ class LandRequestController extends Controller
         } catch (\Throwable $e) {
             return null;
         }
+    }
+    public function checkStatus(LandRequest $landRequest)
+    {
+        [$status, $reasons] = $this->evaluateCheckStatus($landRequest);
+        $payload = ['check_status' => $status];
+        if ($status === 'failed') {
+            $payload['notes'] = implode('، ', array_filter($reasons, fn($r) => trim((string)$r) !== ''));
+        }
+        $landRequest->update($payload);
+        return response()->json([
+            'ok' => true,
+            'id' => $landRequest->id,
+            'check_status' => $status,
+            'reasons' => $reasons,
+        ]);
+    }
+
+    public function checkStatusAll(Request $request)
+    {
+        $query = LandRequest::query();
+        $updated = 0;
+        $failed = 0;
+        $query->chunkById(500, function ($chunk) use (&$updated, &$failed) {
+            foreach ($chunk as $model) {
+                [$status, $reasons] = $this->evaluateCheckStatus($model);
+                $payload = ['check_status' => $status];
+                if ($status === 'failed') {
+                    // Update notes column with failure reasons (joined by comma)
+                    $payload['notes'] = implode('، ', array_filter($reasons, fn($r) => trim((string)$r) !== ''));
+                }
+                $model->update($payload);
+                $status === 'passed' ? $updated++ : $failed++;
+            }
+        }, 'id');
+
+        return redirect()->back()->with('success', __('تم تحديث حالة الفحص لجميع الطلبات') . " ({$updated} ✓ / {$failed} ×)");
+    }
+
+    private function evaluateCheckStatus(LandRequest $model): array
+    {
+        $reasons = [];
+
+        // Rule 1: Nationality is قطري or قطرى
+        $nat = trim(mb_strtolower((string)$model->nationality));
+        $natNormalized = str_replace(['ي'], ['ى'], $nat); // normalize ya to alef maksura
+        $allowed = ['قطري', 'قطرى'];
+        if (!in_array($nat, $allowed, true) && !in_array($natNormalized, $allowed, true)) {
+            $reasons[] = 'الجنسية ليست قطري/قطرى';
+        }
+
+        // Rule 2: Age >= 25
+        if (!$model->birth_date) {
+            $reasons[] = 'تاريخ الميلاد غير متوفر';
+        } else {
+            try {
+                $age = \Carbon\Carbon::parse($model->birth_date)->age;
+                if ($age < 25) {
+                    $reasons[] = 'العمر أقل من 25 سنة';
+                }
+            } catch (\Throwable $e) {
+                $reasons[] = 'تاريخ الميلاد غير صالح';
+            }
+        }
+
+        // Rule 3: camels_count >= 10
+        if ((int)$model->camels_count < 10) {
+            $reasons[] = 'عدد المطايا أقل من 10';
+        }
+
+        // Rule 4: last_participation_date is 2 years ago or earlier (i.e., <= now - 2 years)
+        if (!$model->last_participation_date) {
+            $reasons[] = 'تاريخ آخر مشاركة غير متوفر';
+        } else {
+            try {
+                $limit = \Carbon\Carbon::now()->subYears(2)->startOfDay();
+                $last = \Carbon\Carbon::parse($model->last_participation_date)->startOfDay();
+                if ($last < $limit) {
+                    $reasons[] = 'تاريخ آخر مشاركة أحدث من سنتين';
+                }
+            } catch (\Throwable $e) {
+                $reasons[] = 'تاريخ آخر مشاركة غير صالح';
+            }
+        }
+
+        $status = empty($reasons) ? 'passed' : 'failed';
+        return [$status, $reasons];
     }
 }

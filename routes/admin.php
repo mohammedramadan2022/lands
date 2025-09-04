@@ -51,6 +51,10 @@ Route::group(
         Route::get('land-requests/update-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelUpdateView'])->name('admin.land-requests.update-excel');
         Route::post('land-requests/update-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelUpdateStore'])->name('admin.land-requests.update-excel.store');
 
+        // Land requests actions
+        Route::post('land-requests/{landRequest}/check', [\App\Http\Controllers\Admin\LandRequestController::class, 'checkStatus'])->name('admin.land-requests.check');
+        Route::post('land-requests/check-all', [\App\Http\Controllers\Admin\LandRequestController::class, 'checkStatusAll'])->name('admin.land-requests.check-all');
+
         // Land requests show (must be after specific routes and constrained to numeric IDs)
         Route::get('land-requests/{landRequest}', [\App\Http\Controllers\Admin\LandRequestController::class, 'show'])
             ->whereNumber('landRequest')
