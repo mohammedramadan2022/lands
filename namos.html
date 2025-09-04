@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج استمارة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: white;
+        }
+        .form-container {
+            width: 850px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid black;
+            background-color: #f8f8f8;
+            position: relative;
+        }
+        .header {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: darkred;
+        }
+        .section {
+            border: 1px solid black;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            position: relative;
+        }
+        .title {
+            background-color: darkred;
+            color: white;
+            padding: 5px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .input-group label {
+            width: 180px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .input-group input, .input-group select {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        .checkbox-group {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            background-color: darkred;
+            color: white;
+            padding: 5px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .box {
+            border: 1px solid black;
+            padding: 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            background-color: #eaeaea;
+        }
+        .official-use {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            background-color: lightblue;
+        }
+        .official-sign {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .official-sign div {
+            width: 45%;
+            border-top: 1px solid black;
+            text-align: center;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <div class="header">اللجنة المنظمة لسباق الهجن</div>
+    <div class="section">
+        <div class="title">نموذج استمارة (هوية مطية)</div>
+        <div class="input-group">
+            <label>رقم الطلب:</label>
+            <input type="text">
+        </div>
+        <div class="input-group">
+            <label>اسم المشارك:</label>
+            <input type="text">
+        </div>
+        <div class="input-group">
+            <label>جنسية المالك:</label>
+            <input type="text">
+        </div>
+    </div>
+    <div class="section">
+        <div class="title">الفئة</div>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> بكرة</label>
+            <label><input type="checkbox"> قعود</label>
+            <label><input type="checkbox"> حقائق</label>
+            <label><input type="checkbox"> جذع</label>
+            <label><input type="checkbox"> ثنايا</label>
+        </div>
+    </div>
+    <div class="section">
+        <div class="title">إيقاف التسنين</div>
+        <div class="vertical-text">إيقاف التسنين</div>
+        <div class="box">التوقيع</div>
+    </div>
+    <div class="section">
+        <div class="title">إيقاف التثبيت</div>
+        <div class="vertical-text">إيقاف التثبيت</div>
+        <div class="box">التوقيع</div>
+    </div>
+    <div class="section">
+        <div class="title">إيقاف العبث بالشريحة</div>
+        <div class="vertical-text">إيقاف العبث</div>
+        <div class="box">التوقيع</div>
+    </div>
+    <div class="official-use">للاستخدام الرسمي فقط</div>
+    <div class="official-sign">
+        <div>اسم المدخل</div>
+        <div>التوقيع</div>
+    </div>
+</div>
+</body>
+</html>

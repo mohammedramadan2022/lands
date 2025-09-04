@@ -1,0 +1,19 @@
+.custom-input:checked[type=radio] {
+    background-color: #fff !important; /* Background color for the selected radio */
+    border: none !important; /* Border color for the selected radio */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3ctext x='2' y='15' font-size='20' fill='%23172C73'%3e✔%3c/text%3e%3c/svg%3e") !important;
+    background-size: 1rem 1rem; /* Size of the checkmark */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+table th{
+    background-color: #F0E3D8 !important;
+    padding: 3px !important;
+    text-align: center !important;
+}
+
+table .form-check-input:checked[type=radio] {
+    background-color: #BF3227 !important; /* Background color for the selected radio */
+    border: #BF3227 !important; /* Border color for the selected radio */
+}

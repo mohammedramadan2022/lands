@@ -1,0 +1,292 @@
+/* A4 Page Size for Printing */
+@page {
+    size: A4;       /* or size: A4 landscape; if you want horizontal */
+    width: 210mm;
+    height: 297mm;
+}
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Committee decision section: center and enlarge options */
+    .committee-decision .form-check-label {
+        font-size: 1.6rem !important;
+        line-height: 1.6rem !important;
+        width: auto !important;
+        margin: 0 0.5rem !important;
+    }
+    .committee-decision .radio-container {
+        height: 3.2rem !important;
+    }
+    .committee-decision .radio-content {
+        gap: 0.75rem;
+        overflow: visible !important; /* ensure checkbox borders not clipped */
+    }
+    .committee-decision .custom-input.form-check-input {
+        width: 3rem !important;
+        height: 3rem !important;
+        font-size: 2rem !important;
+        border: 2px solid #000 !important;
+        box-sizing: border-box !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F0E3D8 !important;
+        background-clip: padding-box !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Ensure labels display on a single line with slightly smaller font */
+    .fw-bold.fs-5 {
+        white-space: nowrap;
+        font-size: 1.1rem !important;
+    }
+
+    .invoice {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto;
+        padding: 0 !important;
+        margin: 0 !important;
+        page-break-after: always;
+    }
+
+    .header-banner {
+        height: 6rem;
+        background-color: #e6d7d3;
+        font-size: 12px;
+    }
+
+    .header-banner .col-7 {
+        width: 66.66666667%;
+        padding: 0.5rem 3rem !important;
+    }
+
+    .header-banner .col-5 {
+        width: 33.33333333%;
+    }
+
+    .sub-title {
+        padding: 0 !important;
+    }
+
+    .main-title, .title-text {
+        font-size: 20px !important;
+    }
+
+    .form-control {
+
+        line-height: 2rem !important;
+    }
+
+    .data-section {
+        height: 42.5rem;
+        padding: 0 !important;
+    }
+
+    .col-1 {
+        width: 10%;
+    }
+
+    .order .col-2 {
+        width: 18%;
+    }
+
+    .order .col-3 {
+        width: 24%;
+    }
+
+    .order .col-5 {
+        width: 40%;
+    }
+
+    .col-11 {
+        width: 90%;
+    }
+
+    .p-3 {
+        padding: 5px !important;
+    }
+
+    .mb-3, .mb-4 {
+        margin-bottom: 5px !important;
+    }
+
+    .border-box {
+        padding: 0 !important;
+    }
+
+    .form-control {
+        padding: 0 !important;
+    }
+
+    .input-custom {
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .form-check-input {
+        border: 1px solid #000 !important;
+        box-sizing: border-box !important;
+        border-width: 1pt !important; /* use pt for print reliability */
+        border-bottom-color: #000 !important; /* ensure bottom border prints */
+    }
+
+    .form-check-input:checked {
+        width: 2.5em !important;
+        height: 2.5em !important;
+        background-size: 2em !important;
+        font-weight: 900 !important;
+        background-color: #e0e0e0 !important;
+    }
+
+    .payment-info {
+        padding: 0 !important;
+    }
+
+    .category-input{
+
+        text-align : center !important;
+        font-size: x-large;
+
+    }
+
+    .radio-option-container .custom-input {
+        border: 1px solid #000 !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        font-size: x-large;
+
+    }
+
+    .radio-container .custom-input, .custom-radio-container .custom-input {
+        width: 2rem;
+        height: 2rem;
+        font-size: x-large;
+        border: 1px solid #000;
+        box-sizing: border-box !important; /* include border in height to avoid clipping */
+        /*padding: 0.2rem 0.5rem !important;*/
+    }
+
+    *:has(>#age-option-6) label {
+        width: 80% !important;
+    }
+
+    .input-group {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important; /* avoid clipping borders in print */
+    }
+
+    .invoice-section {
+        height: 16rem;
+    }
+
+    .invoice-section .seal-cell {
+        height: 4.0rem !important;
+    }
+
+    .vertical-text {
+        font-size: 1.1rem !important;
+    }
+
+    .content-box label {
+        width: 30% !important;
+    }
+
+    .content-box input {
+        width: 60% !important;
+    }
+
+    .content-box .form-check-input {
+        width: 1em !important;
+        height: 1em !important;
+        border: 1px solid #000 !important;
+        box-sizing: border-box !important;
+        border-width: 1pt !important;
+    }
+
+    .content-box .form-check-input:checked {
+        width: 2.5em !important;
+        height: 2.5em !important;
+        background-size: 2em !important;
+        font-weight: 900 !important;
+        background-color: #e0e0e0 !important;
+    }
+
+    .content-box table label {
+        display: block;
+        text-align: center;
+        width: 100% !important;
+    }
+
+    /* stop-reason-section bg-light-yellow */
+    .category-container {
+        height: 2rem;
+    }
+
+    .official-use-container {
+        height: 11.2rem;
+    }
+
+    .official-use-container .seal-cell {
+        height: 5rem !important;
+    }
+
+    .official-use-container .p-1 {
+        padding: 0 !important;
+    }
+
+    .official-use-container table {
+        padding: 0 !important;
+        margin: 2px !important;
+    }
+
+
+    .container-style {
+        height: 10.5rem;
+    }
+
+    .container-style .col-4 {
+        width: 35% !important;
+    }
+
+    .container-style .col-8 {
+        width: 65% !important;
+    }
+
+    .container-style label {
+        font-size: 12px !important;
+    }
+
+    .container-style .input-style {
+        padding: 5px 0px !important;
+    }
+
+    .section-header {
+        width: 20px;
+        height: 2rem;
+        padding-bottom: 1rem !important;
+    }
+
+    table, .no-break {
+        page-break-inside: avoid;
+    }
+
+    /* Hide non-printable elements if needed */
+    header, footer, .no-print {
+        display: none !important;
+    }
+
+    /* Prevent checkbox borders from being clipped by wrappers */
+    .radio-content,
+    .custom-radio-wrapper {
+        overflow: visible !important;
+    }
+
+}

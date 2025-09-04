@@ -1,0 +1,418 @@
+
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+/* Background Colors */
+.bg-red {
+    background-color: #BF3227;
+}
+
+.bg-light-red {
+    background-color: #F0E3D8;
+}
+
+.bg-light-yellow {
+    background-color: #F3F2D6;
+}
+
+.bg-light-grey {
+    background-color: #ECEEF1;
+}
+
+.bg-light-grey-alt {
+    background-color: #FAFCFD;
+}
+
+.bg-light-grey-alt-2 {
+    background-color: #F1ECE6;
+}
+
+.bg-light-grey-alt-3 {
+    background-color: #D5F2FA;
+}
+
+.bg-light-grey-alt-4 {
+    background-color: #D7EBF4;
+}
+
+.bg-light-grey-alt-5 {
+    background-color: #E1F4FC;
+}
+
+/* Text Colors */
+.text-red {
+    color: #BF3227;
+}
+
+.text-red-alt {
+    color: #6F1612;
+}
+
+.text-blue {
+    color: #29478B;
+}
+
+.text-light-grey {
+    color: #ECEEF1;
+}
+
+.text-light-grey-alt {
+    color: #FAFCFD;
+}
+
+.text-light-grey-alt-2 {
+    color: #F1ECE6;
+}
+
+.text-light-grey-alt-3 {
+    color: #D5F2FA;
+}
+
+.text-light-grey-alt-4 {
+    color: #D7EBF4;
+}
+
+.text-light-grey-alt-5 {
+    color: #E1F4FC;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.text-black {
+    color: #000;
+}
+
+/* Border */
+.border-box {
+    border: 2px solid #000;
+    padding: 0.5rem 0;
+}
+
+.no-border-left {
+    border-left: none !important;
+}
+
+.no-border-right {
+    border-right: none !important;
+}
+
+.header-banner {
+    height: 10rem;
+    background-color: #e6d7d3;
+}
+
+.header-title {
+    height: 100%;
+}
+
+.main-title {
+    color: #6f1612;
+    font-family: 'Tahoma';
+}
+
+.sub-title {
+    background-color: #6F1612;
+    color: #fff;
+    width: 100%;
+    margin-left: 2rem;
+}
+
+.icon {
+    font-size: 50px;
+}
+
+.title-text {
+    font-family: 'Tahoma';
+}
+
+.logo-img {
+    height: 90%;
+}
+
+.data-section {
+    height: 50rem;
+    /*background-color: #ECEEF1 !important;*/
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid #000;
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #fff;
+}
+
+
+.side-content-light-red {
+    background-color: #865F70;
+}
+
+.side-content-blue {
+    background-color: #29478B;
+    align-items:end;
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin: 0;
+}
+
+.custom-input {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background-color: #F0E3D8;
+}
+
+/* Ensure visible border for the committee decision options on screen */
+.committee-decision .custom-input.form-check-input {
+    border: 2px solid #000 !important;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-label {
+    width: 4rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.radio-option-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.input-small {
+    width: 30%;
+}
+
+.input-full {
+    width: 100%;
+}
+
+.season-text {
+    width: 70%;
+    font-family: 'Tahoma', sans-serif;
+    font-weight: bolder;
+    margin: 0;
+}
+
+.input-custom {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.payment-info {
+    /*border: 1px solid #172C73;*/
+    height: 100%;
+    padding: 0.5rem;
+    align-self: start;
+
+}
+
+.payment-status {
+    background-color: #172C73;
+    color: white;
+    text-align: center;
+    border-radius: 0.5rem;
+    width: 85%;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+    line-height: 1.5rem;
+    font-weight: bold;
+}
+
+.input-mount-name {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.category-container {
+    border: 2px solid #000;
+    padding: 0;
+    height: 2.5rem;
+}
+
+.category-label-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.category-label {
+    line-height: 2.5rem;
+    width: 50%;
+    border-left: 2px solid #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.category-input,
+.category-input-alt {
+    width: 50%;
+}
+
+
+.custom-radio-container {
+    height: 2.5rem;
+}
+
+.custom-radio-wrapper {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.form-check-label {
+    font-size: 13px;
+    line-height: 1rem;
+    width: 35%;
+}
+
+#age-option-2,
+#age-option-4,
+#age-option-6 {
+    background-color: #D5F2FA;
+}
+
+.radio-container {
+    height: 2.5rem;
+}
+
+.radio-content {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+/* Prevent clipping and add spacing in committee decision row on screen */
+.committee-decision .radio-content {
+    overflow: visible !important;
+    gap: 0.75rem;
+}
+
+.invoice-section {
+    height: 20rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.side-content h5 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+
+.stamp-area {
+    height: 6.5rem !important;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    padding: 0 5px;
+    margin-bottom: 0rem;
+}
+
+.input-group label {
+    width: 20%;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.content-section {
+    padding: 1rem;
+    height: 100%;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.content-box {
+    padding: 0.5rem;
+    height: 100%;
+}
+
+.seal-cell {
+    height: 6.5rem !important;
+    text-align: center;
+}
+
+.input-field {
+    border: 0;
+    background-color: transparent;
+}
+
+
+.official-use-section {
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.official-use-container {
+    height: 17rem;
+    background-color: #D7EBF4;
+}
+
+.section-header {
+    width: 20px;
+    height: 6rem;
+    padding-bottom: 3rem !important;
+}
+
+.empty-cell {
+    background-color: transparent !important;
+    padding: 1px !important;
+}
+
+.container-style {
+    height: 15rem;
+    background-color: #F1ECE6;
+}
+
+.input-style {
+    background-color: #E1F4FC;
+    border          : 1px solid #000;
+    text-align      : center;
+    font-weight     : bold;
+    padding         : 10px 0px;
+}
+

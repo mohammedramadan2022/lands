@@ -1,0 +1,217 @@
+[01-Mar-2024 09:32:17 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.27. in /home/thetailorsweb/public_html/doctoria.thetailorsweb.com/vendor/composer/platform_check.php on line 24
+[10-Jan-2025 19:24:43 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
+[10-Jan-2025 19:27:06 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
+[10-Jan-2025 19:27:29 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
+[10-Jan-2025 19:27:39 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
+[10-Jan-2025 19:27:43 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
+[10-Jan-2025 19:27:47 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
+[10-Jan-2025 19:27:56 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
+[10-Jan-2025 19:30:21 UTC] PHP Fatal error:  Uncaught ReflectionException: Class "App\Console\Kernel" does not exist in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:912
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(912): ReflectionClass->__construct('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#9 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#10 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Console\Kernel] does not exist. in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+Stack trace:
+#0 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build('App\\Console\\Ker...')
+#1 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('App\\Console\\Ker...', Array, false)
+#2 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(296): Illuminate\Foundation\Application->resolve('App\\Console\\Ker...', Array, false)
+#3 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(908): Illuminate\Container\Container->Illuminate\Container\{closure}(Object(Illuminate\Foundation\Application), Array)
+#4 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(795): Illuminate\Container\Container->build(Object(Closure))
+#5 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(963): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php(731): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(948): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/yaraa/public_html/portal.yaraa.co/artisan(33): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 {main}
+  thrown in /home/yaraa/public_html/portal.yaraa.co/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 914
