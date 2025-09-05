@@ -371,6 +371,88 @@ class LandRequestController extends Controller
         return [true, null, ['updated' => $updated, 'ignored' => $ignored]];
     }
 
+    public function uploadStatusFromExcelView()
+    {
+        return view('Admin.CRUDS.land_request.updateStatusFromExcel');
+    }
+
+    public function uploadStatusFromExcelStore(Request $request)
+    {
+        ini_set('memory_limit', '512M');
+        $request->validate([
+            'sheet' => 'required|file|mimes:xlsx,xls,csv',
+        ]);
+
+        if ($request->file('sheet')->isValid()) {
+            $file = $request->file('sheet');
+            $dir = 'excel/upload/status-updates/';
+            if (!is_dir($dir)) {
+                @mkdir($dir, 0777, true);
+            }
+            $extension = $file->getClientOriginalExtension();
+            $fileName = 'land-requests-status-update-' . rand(11111111, 99999999) . '.' . $extension;
+            $file->move($dir, $fileName);
+
+            $path = $dir . $fileName;
+            [$ok, $message, $stats] = $this->importStatusNotes($path);
+            if ($ok) {
+                $msg = __('تم تحديث الحالة والملاحظات بنجاح') . ' - ' . sprintf(__('تم تحديث %d سجل/سجلات. تم تجاهل %d سطر بدون تطابق.'), $stats['updated'] ?? 0, $stats['ignored'] ?? 0);
+                return redirect()->back()->with('success', $msg);
+            }
+            return redirect()->back()->withErrors(['sheet' => $message ?? __('حدث خطأ أثناء التحديث')]);
+        }
+
+        return redirect()->back()->withErrors(['sheet' => __('الملف غير صالح')]);
+    }
+
+    private function importStatusNotes(string $file): array
+    {
+        $sheets = Excel::toArray(null, $file);
+        if (!isset($sheets[0])) {
+            return [false, __('لا توجد بيانات في الملف'), []];
+        }
+        $rows = $sheets[0];
+        if (empty($rows)) {
+            return [true, null, ['updated' => 0, 'ignored' => 0]];
+        }
+
+        // Determine if first row is header by inspecting first cell
+        $startIndex = 0;
+        if (!empty($rows) && is_array($rows[0])) {
+            $first = $rows[0];
+            $c0 = isset($first[0]) ? trim(mb_strtolower((string)$first[0])) : '';
+            if ($c0 === '' || !preg_match('/^\d+$/u', str_replace([' ', '\u{200f}', '\u{200e}'], '', $c0)) || str_contains($c0, 'id') || str_contains($c0, 'هوية')) {
+                $startIndex = 1;
+            }
+        }
+
+        $updated = 0; $ignored = 0;
+        for ($i = $startIndex; $i < count($rows); $i++) {
+            $row = $rows[$i];
+            if (!is_array($row)) { $ignored++; continue; }
+            $col0 = isset($row[0]) ? trim((string)$row[0]) : '';
+            $col1 = isset($row[1]) ? trim((string)$row[1]) : '';
+            $col2 = isset($row[2]) ? trim((string)$row[2]) : '';
+
+            $nationalId = $this->onlyDigits($col0);
+            if (!$nationalId) { $ignored++; continue; }
+
+            $model = LandRequest::where('national_id', $nationalId)->first();
+            if (!$model) { $ignored++; continue; }
+
+            $notesParts = array_filter([$col1, $col2], fn($v) => $v !== null && trim((string)$v) !== '');
+            $notes = implode(' - ', array_map('trim', $notesParts));
+
+            $model->update([
+                'previous_land_status' => 1,
+                'previous_lane_notes' => $notes !== '' ? $notes : $model->previous_lane_notes,
+            ]);
+            $updated++;
+        }
+
+        return [true, null, ['updated' => $updated, 'ignored' => $ignored]];
+    }
+
     private function parseDate($v): ?string
     {
         // If numeric, treat as Excel serial date
@@ -426,6 +508,11 @@ class LandRequestController extends Controller
     private function evaluateCheckStatus(LandRequest $model): array
     {
         $reasons = [];
+
+        // Rule 0: previous_land_status must be 1
+        if ((int)$model->previous_land_status !== 1) {
+            $reasons[] = 'لدية تخصيص سابق';
+        }
 
         // Rule 1: Nationality is قطري or قطرى
         $nat = trim(mb_strtolower((string)$model->nationality));

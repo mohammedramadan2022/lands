@@ -144,6 +144,18 @@
                         <span class = "menu-title">تحديث الطلبات من إكسل</span>
                     </a>
                 </div>
+                <div  class = "menu-item">
+                    <a class = "menu-link menu-link-active" href = "{{route('admin.land-requests.update-status-excel')}}">
+                        <span class = "menu-icon">
+                            <span class = "svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                    <path d="M280-120q-33 0-56.5-23.5T200-200v-560q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v340L560-120H280Zm320-120H560q-33 0-56.5-23.5T480-320v-80h-80q-33 0-56.5-23.5T320-480v-200h320v440ZM560-80v-160h160L560-80Z"/>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class = "menu-title">تحديث الحالة السابقة والملاحظات من إكسل</span>
+                    </a>
+                </div>
 
 
                 {{--

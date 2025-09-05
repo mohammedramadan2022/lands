@@ -51,6 +51,10 @@ Route::group(
         Route::get('land-requests/update-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelUpdateView'])->name('admin.land-requests.update-excel');
         Route::post('land-requests/update-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadExcelUpdateStore'])->name('admin.land-requests.update-excel.store');
 
+        // Land requests simple status+notes update via excel (first col: national id, second & third: notes)
+        Route::get('land-requests/update-status-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadStatusFromExcelView'])->name('admin.land-requests.update-status-excel');
+        Route::post('land-requests/update-status-from-excel', [\App\Http\Controllers\Admin\LandRequestController::class, 'uploadStatusFromExcelStore'])->name('admin.land-requests.update-status-excel.store');
+
         // Land requests actions
         Route::post('land-requests/{landRequest}/check', [\App\Http\Controllers\Admin\LandRequestController::class, 'checkStatus'])->name('admin.land-requests.check');
         Route::post('land-requests/check-all', [\App\Http\Controllers\Admin\LandRequestController::class, 'checkStatusAll'])->name('admin.land-requests.check-all');
