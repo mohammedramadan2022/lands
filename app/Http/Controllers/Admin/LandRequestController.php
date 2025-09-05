@@ -14,6 +14,16 @@ class LandRequestController extends Controller
         if ($request->ajax()) {
             $query = LandRequest::query();
 
+            // Custom filters
+            $checkStatus = $request->input('check_status');
+            if ($checkStatus !== null && $checkStatus !== '' && $checkStatus !== 'all') {
+                if ($checkStatus === 'none') {
+                    $query->whereNull('check_status');
+                } else {
+                    $query->where('check_status', $checkStatus);
+                }
+            }
+
             // Global search
             $search = $request->input('search.value');
             if ($search) {

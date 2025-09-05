@@ -4,9 +4,18 @@
 
 @section('content')
 <div class="card mb-5 mb-xl-8">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-title">طلبات الأراضي/العزب</h3>
-        <div class="d-flex gap-2">
+    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <h3 class="card-title mb-0">طلبات الأراضي/العزب</h3>
+        <div class="d-flex gap-2 align-items-center">
+            <form id="filter_form" class="d-flex align-items-center gap-2 me-2">
+                <label for="check_status" class="mb-0">تصفية حسب التحقق:</label>
+                <select name="check_status" id="check_status" class="form-select form-select-sm changeFilter" style="min-width: 180px;">
+                    <option value="">الكل</option>
+                    <option value="passed">اجتاز</option>
+                    <option value="failed">لم يجتاز</option>
+                    <option value="none">لم يتم التحقق</option>
+                </select>
+            </form>
             <a href="{{ route('admin.land-requests.upload-excel') }}" class="btn btn-sm btn-primary">رفع من ملف Excel</a>
             <button type="button" class="btn btn-sm btn-success" onclick="checkAll()">فحص الكل</button>
         </div>
