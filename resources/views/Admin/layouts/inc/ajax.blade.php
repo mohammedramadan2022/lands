@@ -164,7 +164,7 @@
             language: {
                 lengthMenu: "_MENU_", // Customize this text
                 search: "", // No label text for search
-                searchPlaceholder: "ادخل الاسم او id", // Placeholder text for search input
+                searchPlaceholder: "ابحث بالاسم والهوية (مثال: محمد 12345)", // Placeholder text for search input
                 emptyTable: emptyTableMessage,
 
             },

@@ -7,12 +7,12 @@ use App\Http\Traits\NotificationFirebaseTrait;
 use App\Http\Traits\Upload_Files;
 use App\Models\Admin;
 use App\Models\Booking;
-use App\Models\Camel;
 use App\Models\Contact;
 use App\Models\Language;
 use App\Models\Portfolio;
 use App\Models\PortfolioView;
 use App\Models\User;
+use App\Models\LandRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -22,21 +22,26 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $html = '';
+        $landHtml = '';
 
-        $barcode = $request->barcode;
-        if ($request->barcode) {
-            $camel = Camel::where('barcode', $request->barcode)->first();
-
-
-                $html = view('Admin.home.camel-dev', compact('camel' , 'barcode'))->render();
+        // Land requests statistics
+        $totalRequests = LandRequest::count();
+        $passedRequests = LandRequest::where('check_status', 'passed')->count();
+        $failedRequests = LandRequest::where('check_status', 'failed')->count();
 
 
+        // New land request search by national ID
+        $nationalId = trim((string) $request->get('national_id', ''));
+        if ($nationalId !== '') {
+            $landRequest = LandRequest::where('national_id', $nationalId)->first();
+            $landHtml = view('Admin.home.land-request-dev', compact('landRequest', 'nationalId'))->render();
         }
 
-
         return view('Admin.home.index', compact(
-            'html'
+            'landHtml',
+            'totalRequests',
+            'passedRequests',
+            'failedRequests'
         ));
     }//end fun
 

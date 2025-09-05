@@ -160,34 +160,52 @@
 
 @section('content')
 
-    <div class="row">
-        <!-- Add your form here -->
-        <form method="GET" action="">
-            <div class="mb-3">
-                <label for="inputField" class="form-label">رقم الشريحة</label>
-                <input type="text" class="form-control" id="barcode" name="barcode" value="" autofocus minlength="15" maxlength="15" pattern="\d{15}" inputmode="numeric">
+    <!-- Land Requests Statistics -->
+    <div class="row g-6 mb-6">
+        <div class="col-md-4">
+            <div class="card border">
+                <div class="card-body text-center">
+                    <div class="fs-2 fw-bolder">{{ number_format($totalRequests ?? 0) }}</div>
+                    <div class="fw-semibold text-muted">إجمالي طلبات الأراضي</div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">بحث</button>
-        </form>
+        </div>
+        <div class="col-md-4">
+            <div class="card border">
+                <div class="card-body text-center">
+                    <div class="fs-2 fw-bolder text-success">{{ number_format($passedRequests ?? 0) }}</div>
+                    <div class="fw-semibold text-muted">عدد الطلبات المقبولة</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border">
+                <div class="card-body text-center">
+                    <div class="fs-2 fw-bolder text-danger">{{ number_format($failedRequests ?? 0) }}</div>
+                    <div class="fw-semibold text-muted">عدد الطلبات المرفوضة</div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="row">
+        <!-- Land request national ID search -->
+        <div class="col-md-6">
+            <form method="GET" action="">
+                <div class="mb-3">
+                    <label for="national_id" class="form-label">رقم الهوية (طلب أرض)</label>
+                    <input type="text" class="form-control" id="national_id" name="national_id" value="{{ request('national_id') }}" inputmode="numeric">
+                </div>
+                <button type="submit" class="btn btn-primary">بحث</button>
+            </form>
+        </div>
+    </div>
 
-    {!! $html !!}
+    {!! $landHtml ?? '' !!}
 
 @endsection
 
 
 @section('js')
-    <script>
-    // Enforce 15-digit numeric for dashboard search barcode field
-    document.addEventListener('DOMContentLoaded', function(){
-        var el = document.getElementById('barcode');
-        if (el){
-            el.addEventListener('input', function(){
-                this.value = this.value.replace(/\D/g,'').slice(0,15);
-            });
-        }
-    });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection

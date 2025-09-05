@@ -24,17 +24,16 @@ class LandRequestController extends Controller
                 }
             }
 
-            // Global search
-            $search = $request->input('search.value');
-            if ($search) {
-                $query->where(function ($q) use ($search) {
-                    $q->where('applicant_name', 'like', "%{$search}%")
-                        ->orWhere('national_id', 'like', "%{$search}%")
-                        ->orWhere('phone', 'like', "%{$search}%")
-                        ->orWhere('phone_alt', 'like', "%{$search}%")
-                        ->orWhere('notes', 'like', "%{$search}%");
+            // Global search (DataTables or manual ?search=...)
+                // Single term: search across multiple columns
+                $query->where(function ($q) use ($request) {
+                    $q->where('applicant_name', 'like', '%' . $request->search . '%')
+                      ->orWhere('national_id', 'like', '%' . $request->search . '%')
+                      ->orWhere('phone', 'like', '%' . $request->search . '%')
+                      ->orWhere('phone_alt', 'like', '%' . $request->search . '%')
+                      ->orWhere('notes', 'like', '%' . $request->search . '%');
                 });
-            }
+
 
             $total = LandRequest::count();
             $filtered = $query->count();
@@ -509,8 +508,25 @@ class LandRequestController extends Controller
     {
         $reasons = [];
 
+        // Rule -1: applicant_name must not contain variants of "ثاني/ثانى" possibly with definite article and separators
+        $name = trim(mb_strtolower((string)($model->applicant_name ?? '')));
+        if ($name !== '') {
+            // Normalize common Arabic variations:
+            // - normalize Arabic ya (ي) to alef maksura (ى)
+            // - remove tatweel and Arabic diacritics
+            $nameNorm = str_replace(['ي'], ['ى'], $name);
+            $nameNorm = preg_replace('/[\x{0640}\x{064B}-\x{0652}]/u', '', $nameNorm); // remove tatweel and harakat
+            // We want to match: [optional "ال"] + [optional whitespace] + "ثانى"
+            // and allow separators or spaces around words, e.g., "ال ثاني", "/ الثاني", ",الثانى"
+            // Build a Unicode-aware regex. We match word boundaries loosely using non-letter separators.
+            $pattern = '/(?<!\p{L})ال?\s*ثانى(?!\p{L})/u';
+            if (preg_match($pattern, $nameNorm)) {
+                $reasons[] = 'من الشيوخ';
+            }
+        }
+
         // Rule 0: previous_land_status must be 1
-        if ((int)$model->previous_land_status !== 1) {
+        if ((int)$model->previous_land_status == 1) {
             $reasons[] = 'لدية تخصيص سابق';
         }
 
